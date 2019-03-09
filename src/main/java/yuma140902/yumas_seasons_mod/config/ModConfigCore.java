@@ -8,8 +8,8 @@ public class ModConfigCore {
 		CATEGORY_GENERAL = "General";
 	
 	public static final String
-		CONFIG_PROP_LANGKEY = "config.uptodate.prop.",
-		CONFIG_CATEGORY_LANGKEY = "config.uptodate.category.";
+		CONFIG_PROP_LANGKEY = "config.YumasSeasonsMod.prop.",
+		CONFIG_CATEGORY_LANGKEY = "config.YumasSeasonsMod.category.";
 	
 	public static Configuration cfg;
 	
@@ -23,7 +23,7 @@ public class ModConfigCore {
 	
 	private static void initConfig() {
 		// General
-		cfg.addCustomCategoryComment(CATEGORY_GENERAL, "Settings of UpToDateMod");
+		cfg.addCustomCategoryComment(CATEGORY_GENERAL, "Settings of Yuma's Seasons Mod");
 		cfg.setCategoryLanguageKey(CATEGORY_GENERAL, CONFIG_CATEGORY_LANGKEY + "general");
 		cfg.setCategoryRequiresMcRestart(CATEGORY_GENERAL, true);
 	}
