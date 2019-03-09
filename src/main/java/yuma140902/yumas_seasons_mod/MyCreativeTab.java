@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 public class MyCreativeTab extends CreativeTabs {
 	
 	public MyCreativeTab() {
-		super("yumas_seasons_mod");
+		super(ModYumasSeasonsMod.MOD_ID);
 	}
 	
 	@SideOnly(Side.CLIENT)
