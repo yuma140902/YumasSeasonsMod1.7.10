@@ -13,7 +13,7 @@ public class ModConfigCore {
 	
 	public static Configuration cfg;
 	
-	public static boolean debug_mode;
+	public static boolean debugMode;
 	
 	public static void loadConfig(FMLPreInitializationEvent event) {
 		cfg = new Configuration(event.getSuggestedConfigurationFile(), true);
@@ -30,7 +30,7 @@ public class ModConfigCore {
 	
 	public static void syncConfig() {
 		// General
-		debug_mode = cfg.getBoolean("enableDebugMode", CATEGORY_GENERAL, false, "", CONFIG_PROP_LANGKEY + "debug_mode");
+		debugMode = cfg.getBoolean("enableDebugMode", CATEGORY_GENERAL, false, "", CONFIG_PROP_LANGKEY + "debug_mode");
 		
 		cfg.save();
 	}
