@@ -25,6 +25,7 @@ public class ModYumasSeasonsMod {
 	public static final String MINECRAFT_VERSION = "1.7.10";
 	public static final String MOD_VERSION = "0.0.0";
 	public static final String MOD_TEXTURE_DOMAIN = "yumas_seasons_mod";
+	public static final String MOD_UNLOCALIZED_DOMAIN = "yumas_seasons_mod";
 	public static final CreativeTabs MOD_CREATIVETAB = new MyCreativeTab();
 	
 	private void loadModMetadata(ModMetadata modMetadata) {

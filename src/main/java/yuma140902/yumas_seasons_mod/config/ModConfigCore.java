@@ -8,8 +8,8 @@ public class ModConfigCore {
 		CATEGORY_GENERAL = "General";
 	
 	public static final String
-		CONFIG_PROP_LANGKEY = "config.YumasSeasonsMod.prop.",
-		CONFIG_CATEGORY_LANGKEY = "config.YumasSeasonsMod.category.";
+		CONFIG_PROP_LANGKEY = "config.yumas_seasons_mod.prop.",
+		CONFIG_CATEGORY_LANGKEY = "config.yumas_seasons_mod.category.";
 	
 	public static Configuration cfg;
 	

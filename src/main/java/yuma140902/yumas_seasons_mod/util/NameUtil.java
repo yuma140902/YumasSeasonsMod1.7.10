@@ -10,6 +10,6 @@ public final class NameUtil {
 	}
 	
 	public static String getDomainedUnlocalizedName(String name) {
-		return ModYumasSeasonsMod.MOD_ID + "." + name;
+		return ModYumasSeasonsMod.MOD_UNLOCALIZED_DOMAIN + "." + name;
 	}
 }
