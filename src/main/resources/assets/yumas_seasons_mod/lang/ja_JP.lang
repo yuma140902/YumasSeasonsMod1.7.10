@@ -1,0 +1,7 @@
+
+itemGroup.YumasSeasonsMod=Yuma's Seasons Mod
+
+
+config.YumasSeasonsMod.category.general=一般
+config.YumasSeasonsMod.prop.debug_mode=デバッグモード
+config.YumasSeasonsMod.prop.debug_mode.tooltip=デバッグモードを有効化するかどうか。普段は'false'にしておくことをおすすめします
