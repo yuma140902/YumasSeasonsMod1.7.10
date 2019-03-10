@@ -7,10 +7,13 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import yuma140902.yumas_seasons_mod.IHasRecipe;
 import yuma140902.yumas_seasons_mod.IRegisterable;
 import yuma140902.yumas_seasons_mod.ModYumasSeasonsMod;
+import yuma140902.yumas_seasons_mod.MyFluids;
 import yuma140902.yumas_seasons_mod.util.NameUtil;
 
 public class ItemFoodAppleJuice extends ItemFood implements IRegisterable, IHasRecipe {
@@ -24,6 +27,7 @@ public class ItemFoodAppleJuice extends ItemFood implements IRegisterable, IHasR
 		this.setUnlocalizedName(NameUtil.getDomainedUnlocalizedName("apple_juice"));
 		this.setTextureName(NameUtil.getDomainedTextureName("apple_juice"));
 		GameRegistry.registerItem(this, "appleJuice");
+		FluidContainerRegistry.registerFluidContainer(new FluidStack(MyFluids.appleJuice, 333), new ItemStack(this), new ItemStack(Items.glass_bottle));
 	}
 	
 	@Override

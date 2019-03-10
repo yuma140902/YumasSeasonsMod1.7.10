@@ -42,6 +42,7 @@ public class ModYumasSeasonsMod {
 		loadModMetadata(modMetadata);
 		yuma140902.yumas_seasons_mod.config.ModConfigCore.loadConfig(event);
 		
+		MyFluids.register();
 		MyBlocks.register();
 		MyItems.register();
 		
