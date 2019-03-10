@@ -44,6 +44,8 @@ public class ModYumasSeasonsMod {
 		
 		MyBlocks.register();
 		MyItems.register();
+		
+		proxy.registerVanillaOreDictinaries();
 	}
 	
 	@EventHandler
