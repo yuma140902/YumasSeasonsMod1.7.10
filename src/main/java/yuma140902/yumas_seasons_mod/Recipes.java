@@ -4,6 +4,7 @@ public final class Recipes {
 	private Recipes() {}
 	
 	public static void register() {
+		MyItems.appleJuice.registerRecipes();
 	}
 	
 }

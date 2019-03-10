@@ -5,3 +5,5 @@ itemGroup.yumas_seasons_mod=Yuma's Seasons Mod
 config.yumas_seasons_mod.category.general=一般
 config.yumas_seasons_mod.prop.debug_mode=デバッグモード
 config.yumas_seasons_mod.prop.debug_mode.tooltip=デバッグモードを有効化するかどうか。普段は'false'にしておくことをおすすめします
+
+item.yumas_seasons_mod.apple_juice.name=リンゴジュース
