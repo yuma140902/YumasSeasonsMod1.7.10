@@ -27,7 +27,7 @@ public class ItemFoodAppleJuice extends ItemFood implements IRegisterable, IHasR
 	@Override
 	public void registerRecipes() {
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
-				this,
+				new ItemStack(this, 4),
 				"foodApple", "ingredientSuger", Items.glass_bottle
 				));
 	}
