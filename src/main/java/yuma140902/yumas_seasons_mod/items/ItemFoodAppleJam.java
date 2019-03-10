@@ -1,8 +1,10 @@
 package yuma140902.yumas_seasons_mod.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import yuma140902.yumas_seasons_mod.IHasRecipe;
 import yuma140902.yumas_seasons_mod.IRegisterable;
 import yuma140902.yumas_seasons_mod.ModYumasSeasonsMod;
@@ -26,5 +28,10 @@ public class ItemFoodAppleJam extends ItemFood implements IRegisterable, IHasRec
 	@Override
 	public void registerRecipes() {
 		GameRegistry.addSmelting(MyItems.appleJuice, new ItemStack(this), Recipes.SMELTING_XP_FOR_FOOD);
+	}
+	
+	@Override
+	public ItemStack onEaten(ItemStack itemstack, World world, EntityPlayer player) {
+		return LibraryForItems.returnsBottleOnEaten(this, itemstack, world, player);
 	}
 }
