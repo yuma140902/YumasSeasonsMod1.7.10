@@ -28,6 +28,8 @@ public class ModYumasSeasonsMod {
 	public static final String MOD_UNLOCALIZED_DOMAIN = "yumas_seasons_mod";
 	public static final CreativeTabs MOD_CREATIVETAB = new MyCreativeTab();
 	
+	public int renderIdTank;
+	
 	private void loadModMetadata(ModMetadata modMetadata) {
 		modMetadata.modId = MOD_ID;
 		modMetadata.name = MOD_NAME;
@@ -53,8 +55,11 @@ public class ModYumasSeasonsMod {
 	public void init(FMLInitializationEvent event) {
 		Recipes.register();
 		
+		renderIdTank = proxy.getNextRenderId();
+		
 		proxy.registerEntities();
 		proxy.registerRenderers();
+		proxy.registerTileEntities();
 		
 		WorldGenerators.register();
 		

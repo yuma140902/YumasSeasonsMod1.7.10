@@ -10,3 +10,6 @@ item.yumas_seasons_mod.apple_juice.name=リンゴジュース
 item.yumas_seasons_mod.apple_jam.name=リンゴジャム
 
 tile.yumas_seasons_mod.liquid_apple_juice.name=リンゴジュース
+tile.yumas_seasons_mod.tank.name=タンク
+
+fluid.yumas_seasons_mod.apple_juice=リンゴジュース
