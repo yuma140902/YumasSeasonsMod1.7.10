@@ -42,20 +42,23 @@ public class TileEntityFluidTankRenderer extends TileEntitySpecialRenderer {
 			GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
 			
 			IIcon icon = tileentity.getFluidIcon();
-			float f14 = icon.getMinU();
-			float f15 = icon.getMaxU();
-			float f4 = icon.getMinV();
-			float f5 = icon.getMaxV();
+			float minU = icon.getMinU();
+			float maxU = icon.getMaxU();
+			float minV = icon.getMinV();
+			float maxV = icon.getMaxV();
 			
 			this.bindTexture(TextureMap.locationBlocksTexture);
 			
-			float f = 0.0625F;
+			float f = 0.0625F; //タンクの縁の幅
+			double tank_height = 0.3D + f + 0.4D;
+			double height = 0.3D + f - (tileentity.getAmount() * tank_height / TileEntityFluidTank.MAX_AMOUNT_MB);
+			
 			tessellator.startDrawingQuads();
 			tessellator.setNormal(1.0F, 0.0F, 0.0F);
-			tessellator.addVertexWithUV(0.0D + f, -0.4D, -1.0D + f, (double) f15, (double) f4);
-			tessellator.addVertexWithUV(1.0D - f, -0.4D, -1.0D + f, (double) f14, (double) f4);
-			tessellator.addVertexWithUV(1.0D - f, -0.4D, 0.0D - f, (double) f14, (double) f5);
-			tessellator.addVertexWithUV(0.0D + f, -0.4D, 0.0D - f, (double) f15, (double) f5);
+			tessellator.addVertexWithUV(0.0D + f, height, -1.0D + f, (double) maxU, (double) minV);
+			tessellator.addVertexWithUV(1.0D - f, height, -1.0D + f, (double) minU, (double) minV);
+			tessellator.addVertexWithUV(1.0D - f, height, 0.0D - f, (double) minU, (double) maxV);
+			tessellator.addVertexWithUV(0.0D + f, height, 0.0D - f, (double) maxU, (double) maxV);
 			tessellator.draw();
 			
 			GL11.glDisable(GL12.GL_RESCALE_NORMAL);

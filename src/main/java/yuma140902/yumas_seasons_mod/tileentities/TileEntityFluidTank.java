@@ -67,6 +67,12 @@ public class TileEntityFluidTank extends TileEntity implements IFluidHandler {
 	}
 	
 	
+	public int getAmount() {
+		FluidStack fluid = this.innerTank.getFluid();
+		return fluid != null ? fluid.amount : 0;
+	}
+	
+	
 	
 	@Override
 	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
