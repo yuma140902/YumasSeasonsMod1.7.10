@@ -81,7 +81,7 @@ public class BlockTank extends BlockContainer implements IRegisterable {
 					
 					// 液体容器を空にして、空容器を得る。
 					ItemStack emptyContainer = FluidContainerRegistry.drainFluidContainer(itemstackHeld);
-					if (emptyContainer != null) {
+					if (emptyContainer != null && !player.capabilities.isCreativeMode) {
 						if (!player.inventory.addItemStackToInventory(emptyContainer.copy())) {
 							player.entityDropItem(emptyContainer.copy(), 1);
 						}
@@ -125,8 +125,10 @@ public class BlockTank extends BlockContainer implements IRegisterable {
 						tileentity.drain(ForgeDirection.UNKNOWN, amountToDrain, true);
 						
 						// プレイヤーに、先に取得した「液体で満たされた容器アイテム」を与える処理
-						if (!player.inventory.addItemStackToInventory(filledContainer.copy())) {
-							player.entityDropItem(filledContainer.copy(), 1);
+						if(!player.capabilities.isCreativeMode) {
+							if (!player.inventory.addItemStackToInventory(filledContainer.copy())) {
+								player.entityDropItem(filledContainer.copy(), 1);
+							}
 						}
 						
 						// プレイヤーの手持ちアイテムを減らす処理
