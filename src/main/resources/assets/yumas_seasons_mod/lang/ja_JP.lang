@@ -8,6 +8,7 @@ config.yumas_seasons_mod.prop.debug_mode.tooltip=デバッグモードを有効�
 
 item.yumas_seasons_mod.apple_juice.name=リンゴジュース
 item.yumas_seasons_mod.apple_jam.name=リンゴジャム
+item.yumas_seasons_mod.bucket_apple_juice.name=リンゴジュースバケツ
 
 tile.yumas_seasons_mod.liquid_apple_juice.name=リンゴジュース
 tile.yumas_seasons_mod.tank.name=タンク
