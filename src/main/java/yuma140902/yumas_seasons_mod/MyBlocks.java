@@ -7,11 +7,11 @@ public final class MyBlocks {
 	private MyBlocks() {}
 	
 	public static void register() {
-		appleJuice.register();
+		liquidAppleJuice.register();
 		tank.register();
 	}
 	
-	public static final BlockLiquidAppleJuice appleJuice = new BlockLiquidAppleJuice();
+	public static final BlockLiquidAppleJuice liquidAppleJuice = new BlockLiquidAppleJuice();
 	public static final BlockTank tank = new BlockTank();
 	
 }

@@ -16,7 +16,7 @@ import yuma140902.yumas_seasons_mod.util.NameUtil;
 
 public class ItemBucketAppleJuice extends ItemBucket implements IRegisterable, IFluidContainerItem {
 	public ItemBucketAppleJuice() {
-		super(MyBlocks.appleJuice);
+		super(MyBlocks.liquidAppleJuice);
 		setCreativeTab(ModYumasSeasonsMod.MOD_CREATIVETAB);
 	}
 	
@@ -26,7 +26,7 @@ public class ItemBucketAppleJuice extends ItemBucket implements IRegisterable, I
 		this.setTextureName(NameUtil.getDomainedTextureName("bucket_apple_juice"));
 		GameRegistry.registerItem(this, "bucket_apple_juice");
 		FluidContainerRegistry.registerFluidContainer(new FluidStack(MyFluids.appleJuice, 1000), new ItemStack(this), new ItemStack(Items.bucket));
-		FillBucketHandler.INSTANCE.registerCustomBucket(MyBlocks.appleJuice, this);
+		FillBucketHandler.INSTANCE.registerCustomBucket(MyBlocks.liquidAppleJuice, this);
 	}
 
 	@Override
