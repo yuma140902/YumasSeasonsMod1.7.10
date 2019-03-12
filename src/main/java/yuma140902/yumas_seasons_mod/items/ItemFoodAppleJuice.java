@@ -27,13 +27,13 @@ public class ItemFoodAppleJuice extends ItemFood implements IRegisterable, IHasR
 		this.setUnlocalizedName(NameUtil.getDomainedUnlocalizedName("apple_juice"));
 		this.setTextureName(NameUtil.getDomainedTextureName("apple_juice"));
 		GameRegistry.registerItem(this, "appleJuice");
-		FluidContainerRegistry.registerFluidContainer(new FluidStack(MyFluids.appleJuice, 333), new ItemStack(this), new ItemStack(Items.glass_bottle));
+		FluidContainerRegistry.registerFluidContainer(new FluidStack(MyFluids.appleJuice, 25), new ItemStack(this), new ItemStack(Items.glass_bottle));
 	}
 	
 	@Override
 	public void registerRecipes() {
 		GameRegistry
-				.addRecipe(new ShapelessOreRecipe(new ItemStack(this, 2), "foodApple", "ingredientSuger", Items.glass_bottle));
+				.addRecipe(new ShapelessOreRecipe(new ItemStack(this, 4), "foodApple", "ingredientSuger", Items.glass_bottle));
 	}
 	
 	@Override
