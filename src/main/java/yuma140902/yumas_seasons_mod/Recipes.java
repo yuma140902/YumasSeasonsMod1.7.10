@@ -1,5 +1,6 @@
 package yuma140902.yumas_seasons_mod;
 
+import static yuma140902.yumas_seasons_mod.MyBlocks.*;
 import static yuma140902.yumas_seasons_mod.MyItems.*;
 
 public final class Recipes {
@@ -18,6 +19,7 @@ public final class Recipes {
 	public static void register() {
 		appleJuice.registerRecipes();
 		appleJam.registerRecipes();
+		tank.registerRecipes();
 	}
 	
 }

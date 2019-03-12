@@ -5,6 +5,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
@@ -14,13 +15,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import yuma140902.yumas_seasons_mod.IHasRecipe;
 import yuma140902.yumas_seasons_mod.IRegisterable;
 import yuma140902.yumas_seasons_mod.ModYumasSeasonsMod;
 import yuma140902.yumas_seasons_mod.tileentities.TileEntityFluidTank;
 import yuma140902.yumas_seasons_mod.util.Consts;
 import yuma140902.yumas_seasons_mod.util.NameUtil;
 
-public class BlockTank extends BlockContainer implements IRegisterable {
+public class BlockTank extends BlockContainer implements IRegisterable, IHasRecipe {
 	public BlockTank() {
 		super(Material.rock);
 		setStepSound(soundTypeStone);
@@ -163,6 +166,17 @@ public class BlockTank extends BlockContainer implements IRegisterable {
 		setBlockName(NameUtil.getDomainedUnlocalizedName("tank"));
 		setBlockTextureName(NameUtil.getDomainedTextureName("tank"));
 		GameRegistry.registerBlock(this, "tank");
+	}
+	
+	@Override
+	public void registerRecipes() {
+		GameRegistry.addRecipe(new ShapedOreRecipe(this,
+				"# #",
+				"#V#",
+				"###",
+				'#', "cobblestone",
+				'V', Items.bucket
+				));
 	}
 	
 	@Override
