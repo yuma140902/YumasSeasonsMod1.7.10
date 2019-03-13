@@ -13,10 +13,10 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import yuma140902.yumas_seasons_mod.fluid.CustomFluidTank;
-import yuma140902.yumas_seasons_mod.fluid.IFluidTank;
+import yuma140902.yumas_seasons_mod.fluid.IFluidTankContainer;
 import yuma140902.yumas_seasons_mod.util.NameUtil;
 
-public class TileEntityFluidTank extends TileEntity implements IFluidTank {
+public class TileEntityFluidTank extends TileEntity implements IFluidTankContainer {
 	public static final String tileEntityId = NameUtil.getDomainedUnlocalizedName("fluidTank");
 	
 	public static final int MAX_AMOUNT_MB = 1000;
@@ -133,7 +133,7 @@ public class TileEntityFluidTank extends TileEntity implements IFluidTank {
 	}
 	
 	@Override
-	public CustomFluidTank getInnerTank() {
+	public CustomFluidTank getMainTank() {
 		return innerTank;
 	}
 	
