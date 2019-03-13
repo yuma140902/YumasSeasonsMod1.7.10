@@ -32,14 +32,14 @@ public class FillFluidContainerHandler {
 		/* このブロックのTileEntity */
 		TileEntity tileentity = world.getTileEntity(x, y, z);
 		
-		if(tileentity == null || !(tileentity instanceof IFluidTank)) {
+		if(tileentity == null || !(tileentity instanceof IFluidTankContainer)) {
 			return true;
 		}
 		
-		IFluidTank fluidTank = (IFluidTank) tileentity;
+		IFluidTankContainer tankContainer = (IFluidTankContainer) tileentity;
 		
 		// TileEntityの液体タンクに入っている液体を取得
-		FluidStack fluid = fluidTank.getInnerTank().getFluid();
+		FluidStack fluid = tankContainer.getMainTank().getFluid();
 		
 		if (itemstackHeld == null)// 素手
 		{
@@ -67,12 +67,12 @@ public class FillFluidContainerHandler {
 				 * fillメソッドの第二引数にfalseを入れた場合、実際に液体をタンクに入れるのではなく、
 				 * タンクに投入可能な液体の量をシュミレートして値を返す。
 				 */
-				int put = fluidTank.fill(ForgeDirection.UNKNOWN, fluidHeld, false);
+				int put = tankContainer.fill(ForgeDirection.UNKNOWN, fluidHeld, false);
 				
 				// 全量投入可能なときのみ
 				if (put == fluidHeld.amount) {
 					// 今度は液体を液体タンクに入れるので、第二引数はtrueにする。
-					fluidTank.fill(ForgeDirection.UNKNOWN, fluidHeld, true);
+					tankContainer.fill(ForgeDirection.UNKNOWN, fluidHeld, true);
 					
 					// 液体容器を空にして、空容器を得る。
 					ItemStack emptyContainer = FluidContainerRegistry.drainFluidContainer(itemstackHeld);
@@ -89,7 +89,7 @@ public class FillFluidContainerHandler {
 					
 					// 更新を伝える処理
 					// TileEntityを更新した場合、このように更新処理を挟まないと見た目に反映しない。
-					fluidTank.markDirty();
+					tankContainer.markDirty();
 					player.inventory.markDirty();
 					world.markBlockForUpdate(x, y, z);
 					
@@ -116,7 +116,7 @@ public class FillFluidContainerHandler {
 						 * fillの場合と同様に、シュミレートで投入可能量を確かめでから行っても良いと思う。
 						 */
 						
-						fluidTank.drain(ForgeDirection.UNKNOWN, amountToDrain, true);
+						tankContainer.drain(ForgeDirection.UNKNOWN, amountToDrain, true);
 						
 						// プレイヤーに、先に取得した「液体で満たされた容器アイテム」を与える処理
 						if(!player.capabilities.isCreativeMode) {
@@ -132,7 +132,7 @@ public class FillFluidContainerHandler {
 						
 						// 更新を伝える処理
 						// TileEntityを更新した場合、このように更新処理を挟まないと見た目に反映しない。
-						fluidTank.markDirty();
+						tankContainer.markDirty();
 						player.inventory.markDirty();
 						world.markBlockForUpdate(x, y, z);
 						
