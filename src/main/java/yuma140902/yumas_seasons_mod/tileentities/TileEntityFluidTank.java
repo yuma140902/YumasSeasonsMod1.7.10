@@ -68,13 +68,13 @@ public class TileEntityFluidTank extends TileEntity implements IFluidTankContain
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getFluidIcon() {
-		Fluid fluid = this.innerTank.getFluidType();
+		Fluid fluid = this.getMainTank().getFluidType();
 		return fluid != null ? fluid.getIcon() : null;
 	}
 	
 	
 	public int getAmount() {
-		FluidStack fluid = this.innerTank.getFluid();
+		FluidStack fluid = this.getMainTank().getFluid();
 		return fluid != null ? fluid.amount : 0;
 	}
 	
@@ -88,15 +88,15 @@ public class TileEntityFluidTank extends TileEntity implements IFluidTankContain
 		if(resource == null) {
 			return null;
 		}
-		if(innerTank.getFluidType() == resource.getFluid()) {
-			return innerTank.drain(resource.amount, doDrain);
+		if(getMainTank().getFluidType() == resource.getFluid()) {
+			return getMainTank().drain(resource.amount, doDrain);
 		}
 		return null;
 	}
 	
 	@Override
 	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-		return this.innerTank.drain(maxDrain, doDrain);
+		return getMainTank().drain(maxDrain, doDrain);
 	}
 	
 	@Override
@@ -105,13 +105,13 @@ public class TileEntityFluidTank extends TileEntity implements IFluidTankContain
 			return 0;
 		}
 		
-		FluidStack currentFluid = this.innerTank.getFluid();
+		FluidStack currentFluid = getMainTank().getFluid();
 		FluidStack resourceBak = resource.copy();
 		if(currentFluid != null && currentFluid.amount > 0 && !currentFluid.isFluidEqual(resourceBak)) {
 			return 0;
 		}
 		
-		int usedAmount = this.innerTank.fill(resourceBak, doFill);
+		int usedAmount = getMainTank().fill(resourceBak, doFill);
 		resourceBak.amount -= usedAmount;
 		
 		return usedAmount;
@@ -119,7 +119,7 @@ public class TileEntityFluidTank extends TileEntity implements IFluidTankContain
 	
 	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		return fluid != null && this.innerTank.isEmpty(); // !this.innerTank.isFull() では?
+		return fluid != null && getMainTank().isEmpty(); // !getMainTank().isFull() では?
 	}
 	
 	@Override
@@ -129,7 +129,7 @@ public class TileEntityFluidTank extends TileEntity implements IFluidTankContain
 	
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
-		return new FluidTankInfo[] {this.innerTank.getInfo()};
+		return new FluidTankInfo[] {getMainTank().getInfo()};
 	}
 	
 	@Override
