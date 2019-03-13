@@ -12,11 +12,11 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
 import yuma140902.yumas_seasons_mod.fluid.CustomFluidTank;
+import yuma140902.yumas_seasons_mod.fluid.IFluidTank;
 import yuma140902.yumas_seasons_mod.util.NameUtil;
 
-public class TileEntityFluidTank extends TileEntity implements IFluidHandler {
+public class TileEntityFluidTank extends TileEntity implements IFluidTank {
 	public static final String tileEntityId = NameUtil.getDomainedUnlocalizedName("fluidTank");
 	
 	public static final int MAX_AMOUNT_MB = 1000;
@@ -47,6 +47,8 @@ public class TileEntityFluidTank extends TileEntity implements IFluidHandler {
 	}
 	
 	
+	// =========== データ同期 ここから ================
+	
 	@Override
 	public Packet getDescriptionPacket() {
 		NBTTagCompound tagCompound = new NBTTagCompound();
@@ -59,6 +61,10 @@ public class TileEntityFluidTank extends TileEntity implements IFluidHandler {
 		this.readFromNBT(pkt.func_148857_g());
 	}
 	
+	// ============= データ同期 ここまで =================
+	
+	
+	// ============ 描画 ここから ===================
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getFluidIcon() {
@@ -72,7 +78,10 @@ public class TileEntityFluidTank extends TileEntity implements IFluidHandler {
 		return fluid != null ? fluid.amount : 0;
 	}
 	
+	// ============ 描画 ここまで ===============
 	
+	
+	// ============== IFluidTank ここから =============
 	
 	@Override
 	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
@@ -122,4 +131,11 @@ public class TileEntityFluidTank extends TileEntity implements IFluidHandler {
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
 		return new FluidTankInfo[] {this.innerTank.getInfo()};
 	}
+	
+	@Override
+	public CustomFluidTank getInnerTank() {
+		return innerTank;
+	}
+	
+	// =============== IFluidTank ここまで =====================
 }
