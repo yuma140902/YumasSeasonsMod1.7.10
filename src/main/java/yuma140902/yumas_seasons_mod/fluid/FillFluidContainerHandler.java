@@ -89,7 +89,7 @@ public class FillFluidContainerHandler {
 					
 					// 更新を伝える処理
 					// TileEntityを更新した場合、このように更新処理を挟まないと見た目に反映しない。
-					tankContainer.markDirty();
+					tileentity.markDirty();
 					player.inventory.markDirty();
 					world.markBlockForUpdate(x, y, z);
 					
@@ -132,7 +132,7 @@ public class FillFluidContainerHandler {
 						
 						// 更新を伝える処理
 						// TileEntityを更新した場合、このように更新処理を挟まないと見た目に反映しない。
-						tankContainer.markDirty();
+						tileentity.markDirty();
 						player.inventory.markDirty();
 						world.markBlockForUpdate(x, y, z);
 						
