@@ -5,5 +5,4 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public interface IFluidTankContainer extends IFluidHandler {
 	FluidTank getMainTank();
-	void markDirty();
 }
