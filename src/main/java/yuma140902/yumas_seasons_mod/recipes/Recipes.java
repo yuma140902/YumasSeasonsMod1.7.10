@@ -1,4 +1,4 @@
-package yuma140902.yumas_seasons_mod;
+package yuma140902.yumas_seasons_mod.recipes;
 
 import static yuma140902.yumas_seasons_mod.MyBlocks.*;
 import static yuma140902.yumas_seasons_mod.MyItems.*;
@@ -15,6 +15,7 @@ public final class Recipes {
 		SMELTING_XP_FOR_ORE = 0.7F,
 		SMELTING_XP_FOR_RARE_ORE = 1.0F;
 	
+	public static final SqueezerRecipeRegistry squeezer = new SqueezerRecipeRegistry();
 	
 	public static void register() {
 		appleJuice.registerRecipes();
