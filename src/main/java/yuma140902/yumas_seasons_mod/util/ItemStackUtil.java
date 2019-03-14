@@ -7,16 +7,24 @@ public final class ItemStackUtil {
 	private ItemStackUtil() {}
 	
 	/**
-	 * アイテムの種類、数、メタデータ、NBT、メタデータのワイルドカードを使用して
+	 * アイテムの種類、メタデータ、NBT、メタデータのワイルドカードを使用して
 	 * 2つのItemStackを比較します
-	 * @param a
-	 * @param b
+	 * 数は無視されます
+	 * @param left
+	 * @param right
 	 */
-	public static boolean areItemStacksEqual(ItemStack a, ItemStack b) {
-		boolean equalsWithoutWildcard = ItemStack.areItemStacksEqual(a, b);
-		if(!equalsWithoutWildcard) {
-			return a != null && b != null && a.getItemDamage() == OreDictionary.WILDCARD_VALUE && b.getItemDamage() == OreDictionary.WILDCARD_VALUE;
+	public static boolean areItemStacksEqual(ItemStack left, ItemStack right) {
+		if(left == null && right == null) {
+			return true;
 		}
-		return equalsWithoutWildcard;
+		if(left != null && right != null) {
+			int leftMeta = left.getItemDamage();
+			int rightMeta = right.getItemDamage();
+			
+			return left.isItemEqual(right)
+					&& (leftMeta == rightMeta || (leftMeta == OreDictionary.WILDCARD_VALUE && rightMeta == OreDictionary.WILDCARD_VALUE))
+					&& ItemStack.areItemStackTagsEqual(left, right);
+		}
+		return false;
 	}
 }
