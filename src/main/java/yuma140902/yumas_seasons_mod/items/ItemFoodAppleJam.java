@@ -9,7 +9,7 @@ import yuma140902.yumas_seasons_mod.IHasRecipe;
 import yuma140902.yumas_seasons_mod.IRegisterable;
 import yuma140902.yumas_seasons_mod.ModYumasSeasonsMod;
 import yuma140902.yumas_seasons_mod.MyItems;
-import yuma140902.yumas_seasons_mod.Recipes;
+import yuma140902.yumas_seasons_mod.recipes.Recipes;
 import yuma140902.yumas_seasons_mod.util.NameUtil;
 
 public class ItemFoodAppleJam extends ItemFood implements IRegisterable, IHasRecipe {
