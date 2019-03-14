@@ -62,7 +62,7 @@ public class TileEntityFluidTankRenderer extends TileEntitySpecialRenderer {
 			tessellator.draw();
 			
 			GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-			// GL11.glDisable(GL11.GL_BLEND);
+			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glPopMatrix();
 		}
 	}
