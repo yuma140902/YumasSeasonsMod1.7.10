@@ -1,5 +1,6 @@
 package yuma140902.yumas_seasons_mod.fluid;
 
+import java.util.EnumSet;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -12,6 +13,12 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class FillFluidContainerHandler {
 	private FillFluidContainerHandler() {}
+	
+	public enum Operation {
+		SHOW,
+		FILL,
+		DRAIN
+	}
 	
 	/**
 	 * 液体コンテナアイテムと内部にタンクを持つブロックとのやり取りの処理。
@@ -30,6 +37,27 @@ public class FillFluidContainerHandler {
 	 * の戻り値とは違うので注意
 	 */
 	public static boolean fillFluidContainerOnBlockActivated(World world, int x, int y, int z, EntityPlayer player) {
+		return fillFluidContainerOnBlockActivated(EnumSet.of(Operation.SHOW, Operation.FILL, Operation.DRAIN), world, x, y, z, player);
+	}
+	
+	/**
+	 * 液体コンテナアイテムと内部にタンクを持つブロックとのやり取りの処理。
+	 * 満たされた液体コンテナを持っていればタンクへの搬入を試み、
+	 * 空の液体コンテナを持っていればタンクからの搬出を試みる。
+	 * 素手ならタンクの内容をチャットに表示する。
+	 * {@link net.minecraft.block.Block#onBlockActivated(World, int, int, int, EntityPlayer, int, float, float, float)}
+	 * から呼び出されることを想定してる
+	 * @param operations
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param player
+	 * @return 何かしらの処理(液体の搬入、搬出、内容量の表示)が行われたかどうか。
+	 * {@link net.minecraft.block.Block#onBlockActivated(World, int, int, int, EntityPlayer, int, float, float, float)}
+	 * の戻り値とは違うので注意
+	 */
+	public static boolean fillFluidContainerOnBlockActivated(EnumSet<Operation> operations, World world, int x, int y, int z, EntityPlayer player) {
 		/* 手持ちアイテム */
 		ItemStack itemstackHeld = player.getHeldItem();
 		/* このブロックのTileEntity */
@@ -46,7 +74,7 @@ public class FillFluidContainerHandler {
 		
 		if (itemstackHeld == null)// 素手
 		{
-			if(!player.isSneaking()) return false;
+			if(!operations.contains(Operation.SHOW) || !player.isSneaking()) return false;
 			
 			String msg;
 			
@@ -68,6 +96,11 @@ public class FillFluidContainerHandler {
 			
 			// 満たされた液体コンテナを持っている場合
 			if (fluidHeld != null && fluidHeld.getFluid() != null) {
+				
+				if(!operations.contains(Operation.FILL)) {
+					return false;
+				}
+				
 				/*
 				 * fillメソッドの第二引数にfalseを入れた場合、実際に液体をタンクに入れるのではなく、
 				 * タンクに投入可能な液体の量をシュミレートして値を返す。
@@ -107,6 +140,10 @@ public class FillFluidContainerHandler {
 			else {
 				// 液体タンクに何かしら入っている時
 				if (fluid != null && fluid.getFluid() != null) {
+					
+					if(!operations.contains(Operation.DRAIN)) {
+						return false;
+					}
 					
 					ItemStack filledContainer = FluidContainerRegistry.fillFluidContainer(fluid, itemstackHeld);
 					
