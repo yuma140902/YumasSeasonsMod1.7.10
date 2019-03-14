@@ -18,13 +18,16 @@ public class FillFluidContainerHandler {
 	 * 満たされた液体コンテナを持っていればタンクへの搬入を試み、
 	 * 空の液体コンテナを持っていればタンクからの搬出を試みる。
 	 * 素手ならタンクの内容をチャットに表示する。
-	 * Block#onBlockActivated()から呼び出されることを想定してる
+	 * {@link net.minecraft.block.Block#onBlockActivated(World, int, int, int, EntityPlayer, int, float, float, float)}
+	 * から呼び出されることを想定してる
 	 * @param world
 	 * @param x
 	 * @param y
 	 * @param z
 	 * @param player
-	 * @return
+	 * @return 何かしらの処理(液体の搬入、搬出、内容量の表示)が行われたかどうか。
+	 * {@link net.minecraft.block.Block#onBlockActivated(World, int, int, int, EntityPlayer, int, float, float, float)}
+	 * の戻り値とは違うので注意
 	 */
 	public static boolean fillFluidContainerOnBlockActivated(World world, int x, int y, int z, EntityPlayer player) {
 		/* 手持ちアイテム */
@@ -33,7 +36,7 @@ public class FillFluidContainerHandler {
 		TileEntity tileentity = world.getTileEntity(x, y, z);
 		
 		if(tileentity == null || !(tileentity instanceof IFluidTankContainer)) {
-			return true;
+			return false;
 		}
 		
 		IFluidTankContainer tankContainer = (IFluidTankContainer) tileentity;
@@ -43,6 +46,8 @@ public class FillFluidContainerHandler {
 		
 		if (itemstackHeld == null)// 素手
 		{
+			if(!player.isSneaking()) return false;
+			
 			String msg;
 			
 			if (fluid != null && fluid.getFluid() != null) {
@@ -106,8 +111,8 @@ public class FillFluidContainerHandler {
 					ItemStack filledContainer = FluidContainerRegistry.fillFluidContainer(fluid, itemstackHeld);
 					
 					int amountToDrain = FluidContainerRegistry.getContainerCapacity(filledContainer);
-					if (fluid.amount < amountToDrain)
-						return true;
+					if (amountToDrain == 0 || fluid.amount < amountToDrain) //持っているアイテムが空の液体コンテナではない、あるいは液体コンテナを満たすのに十分な量の液体がタンクの中にないとき
+						return false;
 					
 					if (filledContainer != null) {
 						/*
@@ -144,11 +149,11 @@ public class FillFluidContainerHandler {
 				}
 				else {
 					// アイテムが液体入り容器でなく、かつタンクが空だった場合は何もしない
-					return true;
+					return false;
 				}
 			}
 		}
 		
-		return true;
+		return false;
 	}
 }
