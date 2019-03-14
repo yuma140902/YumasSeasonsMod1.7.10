@@ -9,7 +9,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.creativetab.CreativeTabs;
 import yuma140902.yumas_seasons_mod.util.Consts;
 
-@Mod(modid = ModYumasSeasonsMod.MOD_ID, version = ModYumasSeasonsMod.MOD_VERSION, useMetadata = true, guiFactory = Consts.MOD_CONFIG_GUI_FACTORY)
+@Mod(modid = ModYumasSeasonsMod.MOD_ID, name = ModYumasSeasonsMod.MOD_NAME, version = ModYumasSeasonsMod.MOD_VERSION, useMetadata = true, guiFactory = Consts.MOD_CONFIG_GUI_FACTORY)
 public class ModYumasSeasonsMod {
 	@Mod.Metadata
 	public static ModMetadata modMetadata;
