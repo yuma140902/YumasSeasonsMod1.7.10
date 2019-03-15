@@ -6,7 +6,10 @@ import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.creativetab.CreativeTabs;
+import yuma140902.yumas_seasons_mod.gui.ModGuiHandler;
+import yuma140902.yumas_seasons_mod.recipes.Recipes;
 import yuma140902.yumas_seasons_mod.util.Consts;
 
 @Mod(modid = ModYumasSeasonsMod.MOD_ID, name = ModYumasSeasonsMod.MOD_NAME, version = ModYumasSeasonsMod.MOD_VERSION, useMetadata = true, guiFactory = Consts.MOD_CONFIG_GUI_FACTORY)
@@ -60,6 +63,8 @@ public class ModYumasSeasonsMod {
 		proxy.registerEntities();
 		proxy.registerRenderers();
 		proxy.registerTileEntities();
+		
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, ModGuiHandler.INSTANCE);
 		
 		WorldGenerators.register();
 		

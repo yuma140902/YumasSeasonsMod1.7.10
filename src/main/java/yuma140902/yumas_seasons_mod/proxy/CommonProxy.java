@@ -7,6 +7,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import yuma140902.yumas_seasons_mod.event_handlers.CommonEventHandler;
 import yuma140902.yumas_seasons_mod.tileentities.TileEntityFluidTank;
+import yuma140902.yumas_seasons_mod.tileentities.TileEntitySqueezer;
 
 public class CommonProxy {
 	public void registerEventHandlers() {
@@ -21,6 +22,7 @@ public class CommonProxy {
 	
 	public void registerTileEntities() {
 		GameRegistry.registerTileEntity(TileEntityFluidTank.class, TileEntityFluidTank.tileEntityId);
+		GameRegistry.registerTileEntity(TileEntitySqueezer.class, TileEntitySqueezer.tileEntityId);
 	}
 	
 	public int getNextRenderId() {
