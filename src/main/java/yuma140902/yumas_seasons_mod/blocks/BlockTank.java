@@ -29,8 +29,12 @@ public class BlockTank extends BlockContainer implements IRegisterable, IHasReci
 		setCreativeTab(ModYumasSeasonsMod.MOD_CREATIVETAB);
 	}
 	
+	@SideOnly(Side.CLIENT)
 	private IIcon iconTop;
+	@SideOnly(Side.CLIENT)
 	private IIcon iconSide;
+	@SideOnly(Side.CLIENT)
+	private IIcon iconBottom;
 	
 	@Override
 	public boolean onBlockActivated(	World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
@@ -60,13 +64,17 @@ public class BlockTank extends BlockContainer implements IRegisterable, IHasReci
 	public void registerBlockIcons(IIconRegister register) {
 		iconTop = register.registerIcon(CommonTextures.commonMachineTop);
 		iconSide = register.registerIcon(CommonTextures.commonMachineSide);
+		iconBottom = register.registerIcon(CommonTextures.commonMachineBottom);
 	}
 	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIcon(int side, int meta) {
-		if (side == Consts.SIDE_TOP || side == Consts.SIDE_BOTTOM) {
+		if (side == Consts.SIDE_TOP) {
 			return iconTop;
+		}
+		else if(side == Consts.SIDE_BOTTOM) {
+			return iconBottom;
 		}
 		return iconSide;
 	}

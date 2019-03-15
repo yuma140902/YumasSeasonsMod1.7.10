@@ -8,6 +8,7 @@ import yuma140902.yumas_seasons_mod.util.NameUtil;
 public final class CommonTextures {
 	private CommonTextures() {}
 	
-	public static final String commonMachineSide = NameUtil.getDomainedTextureName("common_machine_side");
 	public static final String commonMachineTop = NameUtil.getDomainedTextureName("common_machine_top");
+	public static final String commonMachineSide = NameUtil.getDomainedTextureName("common_machine_side");
+	public static final String commonMachineBottom = NameUtil.getDomainedTextureName("common_machine_bottom");
 }
