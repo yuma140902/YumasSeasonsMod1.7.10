@@ -1,6 +1,8 @@
 package yuma140902.yumas_seasons_mod.blocks;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,6 +15,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import yuma140902.yumas_seasons_mod.IHasRecipe;
 import yuma140902.yumas_seasons_mod.IRegisterable;
 import yuma140902.yumas_seasons_mod.ModYumasSeasonsMod;
+import yuma140902.yumas_seasons_mod.client.texture.CommonTextures;
 import yuma140902.yumas_seasons_mod.fluid.FillFluidContainerHandler;
 import yuma140902.yumas_seasons_mod.tileentities.TileEntityFluidTank;
 import yuma140902.yumas_seasons_mod.util.Consts;
@@ -52,12 +55,14 @@ public class BlockTank extends BlockContainer implements IRegisterable, IHasReci
 				));
 	}
 	
+	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister register) {
-		iconTop = register.registerIcon(getTextureName() + "_top");
-		iconSide = register.registerIcon(getTextureName() + "_side");
+		iconTop = register.registerIcon(CommonTextures.commonMachineTop);
+		iconSide = register.registerIcon(CommonTextures.commonMachineSide);
 	}
 	
+	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIcon(int side, int meta) {
 		if (side == Consts.SIDE_TOP || side == Consts.SIDE_BOTTOM) {
