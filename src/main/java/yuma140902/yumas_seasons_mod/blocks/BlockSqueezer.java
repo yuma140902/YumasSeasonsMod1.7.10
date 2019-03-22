@@ -1,7 +1,6 @@
 package yuma140902.yumas_seasons_mod.blocks;
 
 import java.util.EnumSet;
-import java.util.Random;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -10,7 +9,6 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -26,6 +24,7 @@ import yuma140902.yumas_seasons_mod.client.texture.CommonTextures;
 import yuma140902.yumas_seasons_mod.fluid.FillFluidContainerHandler;
 import yuma140902.yumas_seasons_mod.fluid.FillFluidContainerHandler.Operation;
 import yuma140902.yumas_seasons_mod.gui.ModGuiHandler;
+import yuma140902.yumas_seasons_mod.tileentities.ITileEntityDropable;
 import yuma140902.yumas_seasons_mod.tileentities.TileEntitySqueezer;
 import yuma140902.yumas_seasons_mod.util.Consts;
 import yuma140902.yumas_seasons_mod.util.NameUtil;
@@ -125,21 +124,18 @@ public class BlockSqueezer extends BlockContainer implements IRegisterable, IHas
 	
 	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
-		TileEntitySqueezer tileentity = (TileEntitySqueezer) world.getTileEntity(x, y, z);
-		ItemStack itemstack = (tileentity.inputSlot);
-		if(itemstack != null && !world.isRemote) {
-			Random rand = world.rand;
-			float xDiff = rand.nextFloat() * 0.6F + 0.1F;
-			float yDiff = rand.nextFloat() * 0.6F + 0.1F;
-			float zDiff = rand.nextFloat() * 0.6F + 0.1F;
-			
-			EntityItem entityItem = new EntityItem(world, x + xDiff, y + yDiff, z + zDiff, itemstack.copy());
-			world.spawnEntityInWorld(entityItem);
-		}
+		doDrop(world, x, y, z); 
 		
 		super.breakBlock(world, x, y, z, block, meta);
 	}
-
+	
+	private void doDrop(World world, int x, int y, int z) {
+		ITileEntityDropable tileentity = (ITileEntityDropable) world.getTileEntity(x, y, z);
+		if(tileentity != null) {
+			tileentity.doDrop();
+		}
+	}
+	
 	@Override
 	public TileEntity createNewTileEntity(World world, int p_149915_2_) {
 		return new TileEntitySqueezer();

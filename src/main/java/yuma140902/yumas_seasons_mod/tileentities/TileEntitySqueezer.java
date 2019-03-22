@@ -1,7 +1,9 @@
 package yuma140902.yumas_seasons_mod.tileentities;
 
+import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -21,7 +23,7 @@ import yuma140902.yumas_seasons_mod.fluid.IFluidTankContainer;
 import yuma140902.yumas_seasons_mod.recipes.Recipes;
 import yuma140902.yumas_seasons_mod.util.NameUtil;
 
-public class TileEntitySqueezer extends TileEntity implements IInventory, IFluidTankContainer {
+public class TileEntitySqueezer extends TileEntity implements IInventory, IFluidTankContainer, ITileEntityDropable {
 	public static final String tileEntityId = NameUtil.getDomainedUnlocalizedName("squeezer");
 	
 	public static final int MAX_AMOUNT_MB = 1000;
@@ -179,6 +181,25 @@ public class TileEntitySqueezer extends TileEntity implements IInventory, IFluid
 	}
 	
 	// ============ 描画 ここまで ===============
+	
+	
+	// ================= ITileEntityDropable ここから =================
+	
+	@Override
+	public void doDrop() {
+		ItemStack itemstack = this.inputSlot;
+		if(itemstack != null && !worldObj.isRemote) {
+			Random rand = worldObj.rand;
+			float xDiff = rand.nextFloat() * 0.6F + 0.1F;
+			float yDiff = rand.nextFloat() * 0.6F + 0.1F;
+			float zDiff = rand.nextFloat() * 0.6F + 0.1F;
+			
+			EntityItem entityItem = new EntityItem(worldObj, xCoord + xDiff, yCoord + yDiff, zCoord + zDiff, itemstack.copy());
+			worldObj.spawnEntityInWorld(entityItem);
+		}
+	}
+	
+	// ================= ITileEntityDropable ここまで =================
 	
 	
 	// ============== IFluidTank ここから =============
