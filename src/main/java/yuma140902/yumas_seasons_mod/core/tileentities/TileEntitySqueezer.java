@@ -22,6 +22,7 @@ import yuma140902.yumas_seasons_mod.core.recipes.CoreRecipes;
 import yuma140902.yumas_seasons_mod.lib.fluid.CustomFluidTank;
 import yuma140902.yumas_seasons_mod.lib.fluid.IFluidTankContainer;
 import yuma140902.yumas_seasons_mod.lib.tileentities.ITileEntityDropable;
+import yuma140902.yumas_seasons_mod.lib.tileentities.TileEntitySyncer;
 import yuma140902.yumas_seasons_mod.lib.util.NameUtil;
 
 public class TileEntitySqueezer extends TileEntity implements IInventory, IFluidTankContainer, ITileEntityDropable {
@@ -154,14 +155,12 @@ public class TileEntitySqueezer extends TileEntity implements IInventory, IFluid
 	
 	@Override
 	public Packet getDescriptionPacket() {
-		NBTTagCompound tagCompound = new NBTTagCompound();
-		this.writeToNBT(tagCompound);
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, tagCompound);
+		return TileEntitySyncer.getDescriptionPacket(this);
 	}
 	
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-		this.readFromNBT(pkt.func_148857_g());
+		TileEntitySyncer.onDataPacket(this, net, pkt);
 	}
 	
 	// ============= データ同期 ここまで =================
